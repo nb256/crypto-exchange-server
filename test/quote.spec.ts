@@ -10,7 +10,7 @@ describe("POST /quote", function () {
             url: '/quote',
             payload:
             {
-                "action": "1",
+                "action": "buy",
                 "base_currency": "BTC",
                 "quote_currency": "USDD",
                 "amount": "1"
@@ -28,7 +28,7 @@ describe("POST /quote", function () {
             url: '/quote',
             payload:
             {
-                "action": "1",
+                "action": "sell",
                 "base_currency": "BTC",
                 "quote_currency": "USD",
                 "amount": "1"
@@ -46,7 +46,7 @@ describe("POST /quote", function () {
             url: '/quote',
             payload:
             {
-                "action": "1",
+                "action": "buy",
                 "base_currency": "USD",
                 "quote_currency": "BTC",
                 "amount": "1"
@@ -55,5 +55,23 @@ describe("POST /quote", function () {
 
         expect(response.statusCode).to.eql(200);
         expect(response.json()).to.include.keys("total", "price", "currency");
+    });
+
+    it("it returns error message if action is neither 'buy' or 'sell'", async function () {
+        const server = createServer()
+        const response = await server.inject({
+            method: 'POST',
+            url: '/quote',
+            payload:
+            {
+                "action": "buyy",
+                "base_currency": "USD",
+                "quote_currency": "BTC",
+                "amount": "1"
+            }
+        })
+
+        expect(response.statusCode).to.eql(400);
+        expect(response.json()).to.include.keys("error_message");
     });
 });

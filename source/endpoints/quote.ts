@@ -14,7 +14,7 @@ const route: RouteOptions = {
   schema: {
     body: {
       properties: {
-        action: { type: 'string' },
+        action: { type: 'string', enum: ['buy', 'sell'] },
         base_currency: { type: 'string' },
         quote_currency: { type: 'string' },
         amount: { type: 'string' }

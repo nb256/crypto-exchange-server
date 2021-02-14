@@ -1,6 +1,6 @@
 # fastify-typescript-tests-boilerplate
 
-A boilerplate crypto-exchange application with [Tests(Supertest, Mocha, Chai)](https://dev-tester.com/dead-simple-api-tests-with-supertest-mocha-and-chai/), [Typescript](https://www.typescriptlang.org/), [Fastify](https://www.fastify.io/benchmarks/)
+A boilerplate crypto-exchange application with [Tests(Mocha, Chai)](https://dev-tester.com/dead-simple-api-tests-with-supertest-mocha-and-chai/), [Typescript](https://www.typescriptlang.org/), [Fastify](https://www.fastify.io/benchmarks/)
 
 ### Install and run in development mode
 
