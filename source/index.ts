@@ -1,16 +1,24 @@
-import fastify, { FastifyRequest, FastifyReply } from 'fastify'
+import fastify, { FastifyRequest, FastifyReply, RouteOptions } from 'fastify'
+import quote from "./endpoints/quote"
 
-const server = fastify()
+function createServer(logger: boolean = false) {
+  const app = fastify({
+    logger
+  })
+  app.route(quote)
+  return app
+}
 
-server.post('/ping', async (request: FastifyRequest, reply: FastifyReply) => {
-  console.log({ bod: request.body, b: request.url })
-  return 'pong\n'
-})
+// this module was run directly from the command line as in node xxx.js when require.main === module
+if (require.main === module) {
+  const app = createServer(true)
+  app.listen(80, (err: Error, address) => {
+    if (err) {
+      console.error(err)
+      process.exit(1)
+    }
+    console.log(`Server listening at ${address}`)
+  })
+}
 
-server.listen(8080, (err: Error, address) => {
-  if (err) {
-    console.error(err)
-    process.exit(1)
-  }
-  console.log(`Server listening at ${address}`)
-})
+export default createServer
