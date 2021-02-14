@@ -7,7 +7,8 @@
     "build": "tsc -p tsconfig.json",
     "prestart": "npm run build",
     "start": "node distribution/index.js",
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "test": "mocha -r ts-node/register test/**.spec.ts"
   },
   "author": "Naim Buru",
   "license": "GNU GPLv3",
@@ -18,10 +19,13 @@
     "@types/supertest": "^2.0.10",
     "chai": "^4.3.0",
     "mocha": "^8.3.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "supertest": "^6.1.3",
+    "ts-node": "^9.1.1"
   },
   "dependencies": {
-    "typescript": "^4.1.5",
-    "fastify": "^3.12.0"
+    "axios": "^0.21.1",
+    "fastify": "^3.12.0",
+    "typescript": "^4.1.5"
   }
 }
