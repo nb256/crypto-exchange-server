@@ -1,0 +1,7 @@
+{
+    "watch": [
+        "source"
+    ],
+    "ext": "ts",
+    "exec": "npm restart"
+}
