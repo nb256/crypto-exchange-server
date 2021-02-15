@@ -30,14 +30,15 @@ export default (quote: QuoteRequestBody, asks: FtxOrder[], bids: FtxOrder[]) => 
                 prices.push(jsonAsk.price * jsonAsk.amount)
             } else if (jsonAsk.amount >= remainingAmount) {
                 prices.push(jsonAsk.price * remainingAmount)
+                remainingAmount -= jsonAsk.amount;
                 break;
             }
         }
         if (remainingAmount > 0) {
-            return { price: getSum(prices) / (parseFloat(quote.amount) - remainingAmount), }
+            return { price: getSum(prices) / (parseFloat(quote.amount) - remainingAmount), amount: parseFloat(quote.amount) - remainingAmount }
 
         } else {
-            return { price: getSum(prices) / parseFloat(quote.amount), }
+            return { price: getSum(prices) / parseFloat(quote.amount), amount: parseFloat(quote.amount) }
         }
 
     } else {
@@ -52,14 +53,15 @@ export default (quote: QuoteRequestBody, asks: FtxOrder[], bids: FtxOrder[]) => 
                 prices.push(jsonBid.price * jsonBid.amount)
             } else if (jsonBid.amount >= remainingAmount) {
                 prices.push(jsonBid.price * remainingAmount)
+                remainingAmount -= jsonBid.amount;
                 break;
             }
         }
         if (remainingAmount > 0) {
-            return { price: getSum(prices) / (parseFloat(quote.amount) - remainingAmount), }
+            return { price: getSum(prices) / (parseFloat(quote.amount) - remainingAmount), amount: parseFloat(quote.amount) - remainingAmount }
 
         } else {
-            return { price: getSum(prices) / parseFloat(quote.amount), }
+            return { price: getSum(prices) / parseFloat(quote.amount), amount: parseFloat(quote.amount) }
         }
 
     }

@@ -32,4 +32,16 @@ describe("matchQuoteRequestWithMarket function tests", function () {
         expect(price3).to.be.approximately(46893.98330028181, 0.00001);
     });
 
+    it("matches with only available bids if quote amount is too high", async () => {
+        // asks: [46898.0, 1],...
+        const { amount } = matchQuoteRequestWithMarket({
+            "action": "buy",
+            "base_currency": "BTC",
+            "quote_currency": "USD",
+            "amount": "123123123"
+        }, orderBookResultExample.asks, orderBookResultExample.bids);
+        expect(amount).to.below(123123123)
+
+    });
+
 });
