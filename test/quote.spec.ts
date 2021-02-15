@@ -74,4 +74,22 @@ describe("POST /quote", function () {
         expect(response.statusCode).to.eql(400);
         expect(response.json()).to.include.keys("error_message");
     });
+
+    it("it returns quote_currency as response currency", async function () {
+        const server = createServer()
+        const response = await server.inject({
+            method: 'POST',
+            url: '/quote',
+            payload:
+            {
+                "action": "buy",
+                "base_currency": "BTC",
+                "quote_currency": "USD",
+                "amount": "1"
+            }
+        })
+
+        expect(response.statusCode).to.eql(200);
+        expect(response.json().currency).to.equal("USD")
+    });
 });

@@ -1,4 +1,4 @@
-import fastify, { FastifyRequest, FastifyReply, RouteOptions } from 'fastify'
+import fastify from 'fastify'
 import quote from "./endpoints/quote"
 
 function createServer(logger: boolean = false) {
