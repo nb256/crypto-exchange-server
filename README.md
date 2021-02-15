@@ -24,7 +24,7 @@ A boilerplate crypto-exchange application with [Tests(Mocha, Chai)](https://dev-
 
 Api listens on http://localhost:80
 
-Example Request:
+Example Request: (POST to http://localhost:80/quote)
 
 ```json
 {
