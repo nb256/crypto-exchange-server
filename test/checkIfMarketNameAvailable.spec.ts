@@ -11,8 +11,4 @@ describe("checkIfMarketNameAvailable function tests", function () {
     const result = checkIfMarketNameAvailable("BTC/USD");
     expect(result).to.equal(true)
   });
-  it("should return false if market name is unavailable, ex: USD/BTC", function () {
-    const result = checkIfMarketNameAvailable("USD/BTC");
-    expect(result).to.equal(false)
-  });
 });
